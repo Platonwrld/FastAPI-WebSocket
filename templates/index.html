@@ -33,6 +33,7 @@
 
     function sendMessage(event) {
         var input = document.getElementById("messageText")
+        console.log(input.value)
         ws.send(JSON.stringify(input.value))
         input.value = ''
         event.preventDefault()

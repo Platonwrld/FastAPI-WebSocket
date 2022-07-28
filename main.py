@@ -18,7 +18,7 @@ async def websocket_endpoint(websocket: WebSocket):
     id = 1
     while True:
         data = await websocket.receive_json()
-        await websocket.send_json(f"{id}. {data}")
+        await websocket.send_text(f"{id}. {data}")
         id += 1
         
 
