@@ -22,19 +22,23 @@
   <script>
 
     var ws = new WebSocket("ws://localhost:8000/ws");
-    
+
     ws.onmessage = function(event) {
         var messages = document.getElementById('messages')
         var message = document.createElement('li')
-        var content = document.createTextNode(JSON.parse(event.data))
+        dataObj = JSON.parse(JSON.parse(event.data))
+        var content = document.createTextNode(Object.keys(dataObj) + '. ' + dataObj[1])
         message.appendChild(content)
         messages.appendChild(message)
     };
 
+
     function sendMessage(event) {
         var input = document.getElementById("messageText")
-        console.log(input.value)
-        ws.send(JSON.stringify(input.value))
+        
+          ws.send(JSON.stringify({
+          id: input.value}
+          ));
         input.value = ''
         event.preventDefault()
     }
